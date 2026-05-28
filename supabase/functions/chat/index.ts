@@ -15,6 +15,15 @@ type RequestBody = {
   language: string
 }
 
+const MODEL_MAP: Record<string, string> = {
+  "gemini-1.5-pro": "gemini-1.5-pro",
+  "mistral-large": "mistral-large-latest",
+}
+
+function normalizeModel(model: string): string {
+  return MODEL_MAP[model] || model
+}
+
 function buildSystemPrompt(language: string): string {
   const langMap: Record<string, string> = {
     lua: "Lua (including Roblox/ROBLOX scripting, game exploits, and LuaU)",
@@ -111,8 +120,9 @@ async function callGoogle(model: string, messages: Message[], systemPrompt: stri
       parts: [{ text: m.content }],
     }))
 
+  const normalizedModel = normalizeModel(model)
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${normalizedModel}:generateContent?key=${apiKey}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -144,7 +154,7 @@ async function callMistral(model: string, messages: Message[], systemPrompt: str
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model,
+      model: normalizeModel(model),
       max_tokens: 4096,
       messages: [
         { role: "system", content: systemPrompt },

@@ -13,15 +13,6 @@ type KeyConfig = {
 
 const KEY_CONFIGS: KeyConfig[] = [
   {
-    id: 'anthropic',
-    label: 'Anthropic API Key',
-    provider: 'Claude (Sonnet / Opus)',
-    envVar: 'ANTHROPIC_API_KEY',
-    docsUrl: 'https://console.anthropic.com/settings/keys',
-    placeholder: 'sk-ant-...',
-    note: 'Get your key from console.anthropic.com',
-  },
-  {
     id: 'openai',
     label: 'OpenAI API Key',
     provider: 'GPT-4o / GPT-4 Turbo',

@@ -2,22 +2,6 @@ import type { AIModel } from '../types'
 
 export const MODELS: AIModel[] = [
   {
-    id: 'claude-sonnet-4-5',
-    name: 'Claude Sonnet',
-    provider: 'anthropic',
-    description: 'Anthropic — Strong at reasoning, safe code, detailed explanations',
-    color: '#D97706',
-    icon: 'A',
-  },
-  {
-    id: 'claude-opus-4-5',
-    name: 'Claude Opus',
-    provider: 'anthropic',
-    description: 'Anthropic — Most powerful Claude, best for complex architecture',
-    color: '#B45309',
-    icon: 'A',
-  },
-  {
     id: 'gpt-4o',
     name: 'GPT-4o',
     provider: 'openai',
